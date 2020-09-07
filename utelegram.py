@@ -11,11 +11,6 @@ class ubot:
 
         self.commands = {}
 
-        self.kbd = {
-            'keyboard': [],
-            'resize_keyboard': True,
-            'one_time_keyboard': True}
-
         self.upd = {
             'offset': 0,
             'limit': 1,
