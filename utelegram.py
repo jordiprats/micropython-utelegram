@@ -8,12 +8,10 @@ class ubot:
     
     def __init__(self, token):
         self.url = 'https://api.telegram.org/bot' + token
-
         self.commands = {}
-
         self.default_handler = None
-
         self.message_offset = 0
+        self.sleep_btw_updates = 3
 
         messages = self.read_messages()
         if messages:
@@ -52,7 +50,7 @@ class ubot:
     def listen(self):
         while True:
             self.read_once()
-            time.sleep(3)
+            time.sleep(self.sleep_btw_updates)
             gc.collect()
 
     def read_once(self):
@@ -68,6 +66,9 @@ class ubot:
 
     def set_default_handler(self, handler):
         self.default_handler = handler
+
+    def set_sleep_btw_updates(self, sleep_time):
+        self.sleep_btw_updates = sleep_time
 
     def message_handler(self, message):
         parts = message['message']['text'].split(' ')

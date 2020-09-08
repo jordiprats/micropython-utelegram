@@ -20,6 +20,7 @@ def get_message(message):
     bot.send(message['message']['chat']['id'], message['message']['text'].upper())
 
 def reply_ping(message):
+    print(message)
     bot.send(message['message']['chat']['id'], 'pong')
 
 if sta_if.isconnected():
