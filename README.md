@@ -75,7 +75,7 @@ Messages will be in the following format:
 }
 ```
 
-You can register commands using the **register** method:
+You can register handlers using the **register** method:
 
 ```
 bot.register('/ping', reply_ping)
