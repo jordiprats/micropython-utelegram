@@ -91,8 +91,8 @@ bot.set_default_handler(get_message)
 
 Using the send function we can reply to messages, the parameters are:
 
-* chat ID: chat ID is the same as the user ID except for group chats
-* message: text to send
+* **chat ID**: chat ID is the same as the user ID except for group chats
+* **message**: text to send
 
 For example, we can use the incoming message to get the **chat_id** to reply to:
 
