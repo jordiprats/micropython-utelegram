@@ -11,6 +11,8 @@ class ubot:
 
         self.commands = {}
 
+        self.default_handler = None
+
         self.upd = {
             'offset': 0,
             'limit': 1,
@@ -65,7 +67,13 @@ class ubot:
     def register(self, command, handler):
         self.commands[command] = handler
 
+    def set_default_handler(self, handler):
+        self.default_handler = handler
+
     def message_handler(self, message):
         parts = message['message']['text'].split(' ')
         if parts[0] in self.commands:
             self.commands[parts[0]](message)
+        else:
+            if self.default_handler:
+                self.default_handler(message)
