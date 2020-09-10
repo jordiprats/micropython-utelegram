@@ -115,3 +115,7 @@ bot.read_once()
 ```
 
 Using this method you should add a sleep between each time we poll the Telegram API
+
+## Other examples
+
+* [Telegram integrated countdown timer](https://github.com/jordiprats/micropython-remainigdays)
