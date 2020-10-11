@@ -21,7 +21,7 @@ utelegram_config = {
 
 If you have your **ESP32** connected as **/dev/ttyUSB0** you can use the upload.sh script to upload the bot code to your **micropython enabled ESP32**:
 
-```
+```bash
 ./upload.sh
 ```
 
@@ -46,7 +46,7 @@ def reply_ping(message):
 
 Messages will be in the following format:
 
-```
+```json
 {
    "update_id":302445393,
    "message":{
