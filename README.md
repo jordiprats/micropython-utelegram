@@ -8,7 +8,7 @@ On the demo folder you will find an example bot.
 
 First you'll need to create a new bot using the **BotFather** to get a token for your bot. Once you have it rename the **config.py-demo** and set the variables (WiFI SID/password and your bot token):
 
-```
+```python
 wifi_config = {
     'ssid':'DEMO',
     'password':'PASSW0RD'
