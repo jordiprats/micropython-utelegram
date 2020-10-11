@@ -31,7 +31,7 @@ If you have your **ESP32** connected as **/dev/ttyUSB0** you can use the upload.
 
 To create a new bot you just need to create a ubot object passing the token the **BotFather** have provided:
 
-```
+```python
 bot = utelegram.ubot(utelegram_config['token'])
 ```
 
@@ -39,7 +39,7 @@ bot = utelegram.ubot(utelegram_config['token'])
 
 Handlers will receive the raw message as a parameter:
 
-```
+```python
 def reply_ping(message):
     bot.send(message['message']['chat']['id'], 'pong')
 ```
@@ -77,13 +77,13 @@ Messages will be in the following format:
 
 You can register handlers using the **register** method:
 
-```
+```python
 bot.register('/ping', reply_ping)
 ```
 
 And optionally set a **default handler** for any other message:
 
-```
+```python
 bot.set_default_handler(get_message)
 ```
 
@@ -96,7 +96,7 @@ Using the send function we can reply to messages, the parameters are:
 
 For example, we can use the incoming message to get the **chat_id** to reply to:
 
-```
+```python
 bot.send(message['message']['chat']['id'], 'pong')
 ```
 
@@ -104,13 +104,13 @@ bot.send(message['message']['chat']['id'], 'pong')
 
 We can either let the bot loop but itself to reply to messages:
 
-```
+```python
 bot.listen()
 ```
 
 Or we can loop manually using the **read_once()** function:
 
-```
+```python
 bot.read_once()
 ```
 
