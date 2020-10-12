@@ -46,7 +46,7 @@ def reply_ping(message):
 
 Messages will be in the following format:
 
-```json
+```python
 {
    "update_id":302445393,
    "message":{
