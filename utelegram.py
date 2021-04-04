@@ -45,7 +45,10 @@ class ubot:
                     if 'text' in item['message']:
                         result.append(item)
             return result
-        except:
+        except (ValueError):
+            return None
+        except (OSError):
+            print("OSError: request timed out")
             return None
 
     def listen(self):
