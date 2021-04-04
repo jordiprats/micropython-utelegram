@@ -25,6 +25,7 @@ class ubot:
         try:
             headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
             response = urequests.post(self.url + '/sendMessage', json=data, headers=headers)
+            response.close()
             return True
         except:
             return False
