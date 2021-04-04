@@ -42,8 +42,7 @@ class ubot:
             update_messages = urequests.post(self.url + '/getUpdates', json=self.query_updates).json() 
             if 'result' in update_messages:
                 for item in update_messages['result']:
-                    if 'text' in item['message']:
-                        result.append(item)
+                    result.append(item)
             return result
         except (ValueError):
             return None
@@ -62,7 +61,8 @@ class ubot:
         if messages:
             for message in messages:
                 if message['update_id'] > self.message_offset:
-                    self.message_handler(message)
+                    if 'text' in item['message']:
+                        self.message_handler(message)
                     self.message_offset = message['update_id']
     
     def register(self, command, handler):
