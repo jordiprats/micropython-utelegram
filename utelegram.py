@@ -25,6 +25,7 @@ class ubot:
         try:
             headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
             response = urequests.post(self.url + '/sendMessage', json=data, headers=headers)
+            response.close()
             return True
         except:
             return False
@@ -41,10 +42,12 @@ class ubot:
             update_messages = urequests.post(self.url + '/getUpdates', json=self.query_updates).json() 
             if 'result' in update_messages:
                 for item in update_messages['result']:
-                    if 'text' in item['message']:
-                        result.append(item)
+                    result.append(item)
             return result
-        except:
+        except (ValueError):
+            return None
+        except (OSError):
+            print("OSError: request timed out")
             return None
 
     def listen(self):
@@ -58,7 +61,8 @@ class ubot:
         if messages:
             for message in messages:
                 if message['update_id'] > self.message_offset:
-                    self.message_handler(message)
+                    if 'text' in item['message']:
+                        self.message_handler(message)
                     self.message_offset = message['update_id']
     
     def register(self, command, handler):
