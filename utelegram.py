@@ -63,11 +63,15 @@ class ubot:
     def read_once(self):
         messages = self.read_messages()
         if messages:
-            for message in messages:
-                if message['update_id'] > self.message_offset:
-                    if 'text' in item['message']:
+            if self.message_offset==0:
+                self.message_offset = messages[-1]['update_id']
+                self.message_handler(messages[-1])
+            else:
+                for message in messages:
+                    if message['update_id'] >= self.message_offset:
+                        self.message_offset = message['update_id']
                         self.message_handler(message)
-                    self.message_offset = message['update_id']
+                        break
     
     def register(self, command, handler):
         self.commands[command] = handler
@@ -79,9 +83,10 @@ class ubot:
         self.sleep_btw_updates = sleep_time
 
     def message_handler(self, message):
-        parts = message['message']['text'].split(' ')
-        if parts[0] in self.commands:
-            self.commands[parts[0]](message)
-        else:
-            if self.default_handler:
-                self.default_handler(message)
+        if 'text' in message['message']:
+            parts = message['message']['text'].split(' ')
+            if parts[0] in self.commands:
+                self.commands[parts[0]](message)
+            else:
+                if self.default_handler:
+                    self.default_handler(message)
