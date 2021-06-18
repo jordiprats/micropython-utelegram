@@ -1,30 +1,27 @@
 # micropython-utelegram
 
-This library provides a **microPython** interface for for a subset of the **Telegram Bot API**. Have been tested on an **ESP32** but should work just fine on an **ESP8266**
+This library provides a **microPython** interface for for a subset of the **Telegram Bot API**. Have been tested on an **ESP32** but should work just fine on an **ESP8266** and **ESP32**
 
 ## Your first bot
 
-On the demo folder you will find an example bot. 
+You will find an example bot. 
 
-First you'll need to create a new bot using the **BotFather** to get a token for your bot. Once you have it rename the **config.py-demo** and set the variables (WiFI SID/password and your bot token):
+First you'll need to edit the config dictionary on the main.py file, or create a new file config.json with the needed data about your wifi connection and the token of your bot.
 
 ```python
-wifi_config = {
-    'ssid':'DEMO',
-    'password':'PASSW0RD'
-}
-
-utelegram_config = {
+config = {
+    'ssid': 'DEMO',
+    'password': 'PASSW0RD',
     'token': 'TOKEN'
 }
 ```
-
-If you have your **ESP32** connected as **/dev/ttyUSB0** you can use the upload.sh script to upload the bot code to your **micropython enabled ESP32**:
-
-```bash
-./upload.sh
+```config.json
+{
+    "ssid": "DEMO",
+    "password": "PASSW0RD",
+    "token": "TOKEN"
+}
 ```
-
 ### Example bot code
 
 #### Initialize bot
@@ -105,13 +102,13 @@ bot.send(message['message']['chat']['id'], 'pong')
 We can either let the bot loop but itself to reply to messages:
 
 ```python
-bot.listen()
+bot.listen_blocking()
 ```
 
-Or we can loop manually using the **read_once()** function:
+Or we can loop manually using the **update()** function:
 
 ```python
-bot.read_once()
+bot.update()
 ```
 
 Using this method you should add a sleep between each time we poll the Telegram API
