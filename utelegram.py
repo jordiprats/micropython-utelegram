@@ -37,7 +37,7 @@ class ubot:
     def read_messages(self):
         result = []
         self.query_updates = {
-            'offset': self.message_offset,
+            'offset': self.message_offset + 1,
             'limit': 1,
             'timeout': 30,
             'allowed_updates': ['message']}
