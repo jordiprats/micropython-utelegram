@@ -1,6 +1,6 @@
 # micropython-utelegram
 
-This library provides a **microPython** interface for for a subset of the **Telegram Bot API**. Have been tested on an **ESP32** but should work just fine on an **ESP8266**
+This library provides a **microPython** interface for for a subset of the **Telegram Bot API**. Have been tested on an **ESP32** but should work just fine on an **ESP8266**. Further tests have been done on **RP2040** with successful results.
 
 ## Your first bot
 
